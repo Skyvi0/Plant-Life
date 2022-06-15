@@ -1,0 +1,17 @@
+.green-button {
+  background-color: $primary;
+  color: white;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  border: none;
+  text-align: center;
+  align-content: center;
+}
+
+// add it to html with this code:
+
+// <%= link_to garden_plants_path(@garden) do %>
+//   <button class="green-button">+</button>
+//   <% end %>
+// </div>

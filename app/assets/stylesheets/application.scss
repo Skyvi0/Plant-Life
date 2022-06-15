@@ -1,0 +1,76 @@
+// Graphical variables
+@import "config/fonts";
+@import "config/colors";
+@import "config/bootstrap_variables";
+
+// External libraries
+@import "bootstrap/scss/bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+// Your CSS partials
+@import "components/index";
+@import "pages/index";
+
+body {
+  padding-bottom: 60px;
+  p {
+    font-size: 16px;
+    margin-bottom: 0.25rem;
+  }
+
+  h4 {
+    margin-bottom: 0.25rem;
+  }
+}
+
+.container {
+  // padding-bottom: 10vh;
+}
+
+.background-image {
+  background-image: asset_url("1436648.jpg");
+  height: 100vh;
+}
+
+.analytics {
+  font-size: 24px;
+  font-weight: bolder;
+  font-family: "Playfair Display";
+}
+
+.sticky-btn {
+  position: fixed;
+  bottom: 85px;
+  right: 5px;
+  font-size: 2rem;
+  height: 4.2rem;
+  width: 4.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.light-gray {
+  color: $light-gray;
+}
+
+// garden index
+#garden-count {
+  margin-right: 32px;
+  // border-bottom: 2px solid darkgreen;
+}
+
+h1 {
+  font-size: 2.2rem;
+}
+
+.fas {
+  font-size: 1.8em;
+  color: $plant-green;
+}
+
+.number {
+  font-family: "Playfair Display";
+  padding-bottom: 2px;
+}

@@ -1,0 +1,24 @@
+.my-plant-card-horizontal {
+  // text-align: center;
+  text-decoration: none;
+  // box-shadow: 2px 2px 4px 0px lightgray;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-top: 1em;
+  margin-right: 8px;
+
+    h4 {
+      padding-top: 8px;
+      text-align: left;
+    }
+}
+
+.my-plant-card-horizontal > .plant-image {
+  height: 12rem;
+  width: 10rem;
+  border-radius: 8px;
+  // margin-right: 1em;
+  object-fit: cover;
+  margin: 0em;
+  // box-shadow: 2px 2px 4px 0px lightgray;
+}

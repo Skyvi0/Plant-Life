@@ -1,0 +1,42 @@
+.home-garden-card {
+  text-align: center;
+  // box-shadow: 2px 2px 4px 0px lightgray;
+  font-size: 12px;
+  border-radius: 8px;
+  margin-top: 1em;
+  padding-bottom: 8px;
+  border-radius: 0px 0px 8px 8px;
+  border-top: none;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: white;
+}
+
+.home-garden img {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 8px;
+}
+
+.home-garden-card h2 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+.home-garden-label {
+  font-style: italic;
+  text-align: start;
+}
+
+.garden-card {
+  background-color: $light-green;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.garden-info-card {
+  border-top: 1px solid lightgray;
+  padding-top: 1em;
+  margin-top: 1em;
+}

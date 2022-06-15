@@ -1,0 +1,15 @@
+<div class="container">
+  <h1 class="my-4" ><%= @my_plant.nickname %>
+  </h1>
+
+  <%= simple_form_for [@garden, @my_plant] do |f| %>
+    <%= f.input :nickname %>
+    <%= f.input :last_watered %>
+    <%= f.input :photo, as: :file %>
+    <%= hidden_field_tag "plant_id", params[:plant_id] %>
+    <%= f.button :submit, "Save Plant", class: "btn btn-primary"%>
+  <% end %>
+</div>
+
+<%# <label class="form-label" for="customFile">Saved</label>
+<input type="file" class="form-control" id="customFile" /> %>

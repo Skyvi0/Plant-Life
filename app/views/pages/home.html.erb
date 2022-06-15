@@ -1,0 +1,100 @@
+<div class="container">
+<%# button for adding a new garden (missing link) %>
+  <h1 class="my-4 ps-2">Home</h1>
+
+
+  <div class="container">
+    <%# Garden container %>
+    <ul class="nav nav-tabs justify-content-around" id="myTab" role="tablist">
+      <% @gardens.each do |garden| %>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link <%= 'active' if @gardens.first == garden %>" id="<%=garden.name%>-tab" data-bs-toggle="tab" href="#<%=garden.name%>" role="tab" aria-controls="<%=garden.name%>" aria-selected="true"><%=garden.name%></button>
+        </li>
+      <%end%>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <% @gardens.each do |garden| %>
+        <div class="tab-pane fade text-center <%= ' active show ' if @gardens.first == garden %>" id="<%=garden.name%>" role="tabpanel" aria-labelledby="<%=garden.name%>-tab">
+          <% link_to garden.name, garden_path(garden)%>
+          <div class="home-garden-card">
+            <div class="row flex-row flex-nowrap overflow-auto">
+                <% garden.my_plants.each do |my_plant| %>
+                <div class="col-4">
+                  <div class="home-garden img">
+                      <%= cl_image_tag my_plant.photo.key, height: 280, width: 200, crop: :fill if my_plant.photo.attached?%>
+                  </div>
+                  <span class="pt-2" style="font-size: 16px"><%= my_plant.nickname%></span>
+                </div>
+                <%end%>
+              </div>
+          </div>
+        </div>
+      <%end%>
+    </div>
+  </div>
+
+  <div class="notifications-container" data-controller="progressbar">
+    <h1 class="my-4 ps-2">Notifications</h1>
+    <%# Progress Bar %>
+    <div class="progress my-2" >
+      <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" data-progressbar-target="progressbar"></div>
+    </div>
+
+    <div class="notification-container">
+      <%# notifications %>
+      <div class="d-flex justify-content-around flex-column pb-4">
+        <% @my_plants.each do |p| %>
+          <% if p.water? %>
+            <div class="notification-card mx-2">
+              <div class="plant-avatar">
+                <%= cl_image_tag p.photo.key, class: "img-card-not", crop: :fill if p.photo.attached?%>
+              </div>
+              <div class="d-flex align-items-center">
+                <div class="mt-1" style="line-height: 1.5rem">
+                  <h4 ><%= p.nickname %></h4>
+                  <p class="light-gray"><%= p.garden.name %></p>
+                  <% if p.overdue == "due today" %>
+                    <p class="today"><%= p.overdue %></p>
+                  <% elsif %>
+                    <p class="overdue"><%= p.overdue %></p>
+                  <% end %>
+                </div>
+              </div>
+              <div class="form-check">
+                <%= link_to water_my_plant_path(p), method: :patch, remote: true do %>
+                  <input  class="form-check-input"
+                          type="checkbox"
+                          checked
+                          data-controller="notification"
+                          data-action="click->notification#toggleStyle click->progressbar#changeProgress"
+                          data-notification-target="input"
+                          data-progressbar-target="check">
+                <% end %>
+              </div>
+            </div>
+
+          <% end %>
+
+        <% end %>
+
+      </div>
+    </div>
+
+  <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="green-button mx-2 sticky-btn">+</button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Please enter your garden name:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for @garden do |f|%>
+            <%= f.input :name %>
+            <%= f.button :submit, class:"btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

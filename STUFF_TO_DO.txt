@@ -1,0 +1,4 @@
+1. ADD VALIDATIONS TO MY PLANTS AND USERS (check all the models) checked
+2. migrate to get rid of light_exposure
+3. change the route to be a index of MY PLANTS instead of PLANTS checked
+4. seed file rework user need first last name

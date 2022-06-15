@@ -1,0 +1,47 @@
+
+<div class="container justify-content-around" style="width: 90%">
+
+
+  <div class="d-flex garden-meta-info">
+    <div id="garden-count">
+      <h1 class="align-left my-4"> <%= @garden.name %> </h1>
+      <p class="analytics"><%= @garden.my_plants.count %></p>
+      <p class="light-gray" style="font-weight: 500; font-size: 20px; color: #545252">Plants</p>
+    </div>
+  </div>
+
+  <div class="mt-5">
+  <% @my_plants.each do |my_plant| %>
+    <%= link_to garden_my_plant_path(my_plant.garden, my_plant), class: "text-decoration-none linked-plant-cards" do %>
+
+      <div class="my-plant-card mt-4">
+        <div class="d-flex justify-content-left align-items-center ">
+
+          <%= cl_image_tag my_plant.photo.key, class: "plant-image-left", style:"width: 40%" %>
+
+          <div class="garden-plant-info d-flex align-items-start flex-column ps-3">
+            <div class="" style="line-height: 1.5rem">
+              <% if my_plant.nickname.empty? %>
+                <h2 class="grey"><%= my_plant.plant.latin %></h2>
+              <% else %>
+                <h2 class="grey"><%= my_plant.nickname %></h2>
+              <% end %>
+            </div>
+              <p class="my-plant-label"><%= my_plant.plant.common %></p>
+              <% if my_plant.water? %>
+                <p class="my-plant-label water-info bg-warning"><i class="fas fa-tint"></i> needs water</p>
+              <% else %>
+                <p class="my-plant-label water-info"><i class="fas fa-tint"></i> in <%= my_plant.days_ago + 7 %> days</p>
+              <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+  <%= link_to garden_my_plants_path(@garden), class: "mx-2" do %>
+    <button class="green-button mx-2 sticky-btn">
+      +
+    </button>
+  <% end %>
+  </div>
+</div>

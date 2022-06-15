@@ -1,0 +1,17 @@
+{
+  "background_color": "white",
+  "description": "PlantLife is not just another plant app. It helps those who took it upon themselves to protect those, that connot protect themselves. Those who choose to be a creative force, rather than a destructive one. You're a steward of Nature. A guardian of Life. A green knight. Let PlantLife be your right hand.",
+  "display": "fullscreen",
+  "name": "PlantLife",
+  "icons": [
+    <% files = Dir.entries(Rails.root.join("app/assets/images/icons/")).select {|f| !File.directory? f} %>
+    <% files.each_with_index do |file, index| %>
+      <% match = file.match(/.+-(?<size>\d{2,3}x\d{2,3}).png/) %>
+      {
+        "src": "<%= image_path "icons/#{file}" %>",
+        "sizes": "<%= match && match[:size] %>",
+        "type": "image/png"
+      }<%= "," unless (files.size - 1) == index %>
+    <% end %>
+  ]
+}

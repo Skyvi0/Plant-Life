@@ -1,0 +1,6 @@
+# config/meta.yml
+
+meta_product_name: "Plant Life"
+meta_title: "Plant Life - We offer an easy and simple way to care for your plants."
+meta_description: "Plant life saves Plants worldwide and make the world greener"
+meta_image: "cover.png" # should exist in `app/assets/images/`

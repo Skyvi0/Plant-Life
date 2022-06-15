@@ -1,0 +1,57 @@
+<div class="container">
+  <div class="my-plant-card mb-3">
+      <%= cl_image_tag @my_plant.photo.key, class: "plant-image" %>
+
+      <div class="d-flex justify-content-between mt-1" style="margin-bottom: 1rem">
+          <div class="text-start ms-3">
+            <h2><%= @my_plant.nickname %></h2>
+            <p style="font-size: 12px"><%= @my_plant.plant.common ? @my_plant.plant.common.upcase : @my_plant.plant.latin.upcase %></p>
+        </div>
+
+          <div class="pencil-icon align-self-start m-2">
+            <%= link_to edit_garden_my_plant_path do %>
+              <i class="fas fa-edit"></i>
+            <% end %>
+          </div>
+      </div>
+
+          <div class="text-start py-1 ms-3">
+
+            <p style="margin-bottom: 12px">Last watered: <%= @my_plant.days_ago %> days ago</p>
+
+            <div class="flex-end to-do water text-center p-0 me-2">
+              <% if @my_plant.water? %>
+              <div class="d-flex justify-content-center align-items-center pb-8px">
+                <p style="padding-top: 8px; padding-bottom: 8px"><i class="fas fa-tint" style="font-size: 1.2rem; color: white; "></i>  Please water <%= @my_plant.nickname %></p>
+              </div>
+              <% else %>
+                <p></p>
+              <% end %>
+            </div>
+
+          </div>
+
+  </div>
+
+  <div class="pt-2 my-plant-card">
+    <h4 class="py-2 ps-3 text-start">Needs</h4>
+      <div class="pb-3 d-flex flex-column align-items-around">
+
+        <div class="d-flex justify-content-around align-items-center py-2">
+          <i class="fas fa-tint" style="width: 10%"></i>
+          <p class="text-start m-0" style="width: 70%"><%= @my_plant.plant.watering %></p>
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center py-2">
+          <i class="fas fa-cloud-sun" style="width: 10%"></i>
+          <p class="text-start m-0" style="width: 70%"><%= @my_plant.plant.ideallight %></p>
+        </div>
+
+        <div class="d-flex justify-content-around align-items-center py-2">
+          <i class="fas fa-thermometer-half" style="width: 10%; font-size: 2em"></i>
+          <p class="text-start m-0" style="width: 70%">Temperature: <%= @my_plant.plant.tempmax %></p>
+        </div>
+
+      </div>
+  </div>
+</div>

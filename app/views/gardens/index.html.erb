@@ -1,0 +1,88 @@
+
+<div class="container">
+
+  <div class="container">
+    <h1 class="my-4">
+      My Gardens
+    </h1>
+    <div class="d-flex garden-meta-info">
+      <div id="garden-count">
+        <p class="analytics"><%= @garden_count %></p>
+        <p class="light-gray" style="font-weight: 500; font-size: 20px; color: #545252">Gardens</p>
+      </div>
+      <div id="plant-count">
+        <p class="analytics"><%= @my_plants_count %></p>
+        <p class="light-gray" style="font-weight: 500; font-size: 20px; color: #545252">Plants</p>
+      </div>
+    </div>
+  </div>
+
+  <% @gardens.each do |garden| %>
+    <div class="my-5 garden-card">
+        <!-- Plant Images Carousel -->
+        <div class="carousel">
+            <% garden.my_plants.each do |p| %>
+              <div class="my-plant-card-horizontal">
+                <%= cl_image_tag p.photo.key, class: "plant-image" %>
+                <% if p.nickname.empty? %>
+                  <h4 class="ps-1"><%= p.plant.common_name %></h4>
+                <% else %>
+                  <h4 class="ps-1"><%= p.nickname %></h4>
+                <% end %>
+              </div>
+            <% end %>
+        </div>
+
+        <!-- Garden Info -->
+        <div class="d-flex justify-content-between garden-info-card">
+          <div>
+            <%= link_to garden_path(garden) do %>
+            <h2 class="m-0"><%= garden.name %></h2>
+            <%# <i class="fas fa-external-link"></i> %>
+            <% end %>
+            <p class="light-gray"><span class="number"><%= garden.my_plants.count %></span> plants</p>
+          </div>
+          <div class="flex-end align-self-end">
+            <% garden.my_plants.each do |p| %>
+              <% if p.water? %>
+                <% @count += 1 %>
+              <% else %>
+                <% @count += 0 %>
+              <% end %>
+            <% end %>
+
+            <p class="to-do">
+              <% if @count == 1 %>
+                <span class="number"><%= @count %></span> to-do
+              <% else %>
+                <span class="number"><%= @count %></span> to-do's
+              <% end %>
+            </p>
+
+          </div>
+        </div>
+
+    </div>
+  <% end %>
+  <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="green-button mx-2 sticky-btn">
+    +
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Please enter your garden name:</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <%= simple_form_for @garden do |f|%>
+            <%= f.input :name %>
+            <%= f.button :submit, class:"btn btn-primary" %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>

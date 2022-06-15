@@ -1,0 +1,42 @@
+<!--
+<div class="navbar navbar-expand-sm navbar-light navbar">
+  <div class="container-fluid rounded-top justify-content-center "> <%# navbar to bottom %>
+
+    <div class="d-flex sprout-icon pt-2">
+      <h2 class="align-self-end m-0">PlantLife</h2>
+      <%= image_tag "sprout.png", class: "mb-1" %>
+    </div>
+
+  </div>
+</div>
+-->
+
+<div class="navbar-expand-sm navbar-light navbar fixed-bottom pb-0">
+  <div class="container-fluid navbar-plantlife"> <%# navbar to bottom %>
+
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "home-2.png" %>
+    <% end %>
+
+    <%= link_to gardens_path, class: "navbar-brand" do %>
+      <%= image_tag "leaves.png" %>
+    <% end %>
+
+
+    <% if user_signed_in? %>
+          <div class="dropup">
+            <button type="button" class="btn dropdown p-0" id="dropdownBtn" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= image_tag "https://avatars.githubusercontent.com/u/102250825?v=4", class: "avatar" %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownBtn">
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </div>
+    <% else %>
+        <%= link_to new_user_session_path, class: "navbar-brand" do %>
+          <%= image_tag "user.png" %> <%# inserted user png %>
+        <% end %>
+    <% end %>
+
+  </div>
+</div>

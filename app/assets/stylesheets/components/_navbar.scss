@@ -1,0 +1,17 @@
+.navbar {
+  justify-content: space-between;
+}
+
+.navbar .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar .navbar-brand img {
+  width: 2em;
+}
+
+.navbar-plantlife {
+  background: white;
+  height: 10vh;
+  // box-shadow: 2px -2px 4px $primary;
+}
